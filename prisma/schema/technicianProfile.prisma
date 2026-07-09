@@ -9,5 +9,5 @@ model TechnicianProfile {
     updatedAt       DateTime @updatedAt
 
 
-    @@map("technicianProfiles")
+  @@map("technicianProfiles")
 }
