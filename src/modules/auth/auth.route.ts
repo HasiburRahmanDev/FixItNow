@@ -18,4 +18,6 @@ router.get(
   authController.getMyProfile,
 );
 
+router.post("/refresh-token", authController.refreshToken);
+
 export const authRoutes = router;
