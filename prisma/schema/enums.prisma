@@ -1,10 +1,18 @@
 enum ActiveStatus {
-    BAN
-    UNBAN
+  BAN
+  UNBAN
 }
 
 enum Role {
-    CUSTOMER 
-    TECHNICIAN
-    ADMIN
+  CUSTOMER
+  TECHNICIAN
+  ADMIN
+}
+
+
+enum BookingStatus {
+  PENDING
+  ACCEPTED
+  COMPLETED
+  CANCELLED
 }
