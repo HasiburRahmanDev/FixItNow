@@ -1,5 +1,11 @@
 import cookieParser from "cookie-parser";
-import express, { Application, Request, Response } from "express";
+import express, {
+  application,
+  Application,
+  Request,
+  response,
+  Response,
+} from "express";
 import cors from "cors";
 import config from "../config";
 import httpStatus from "http-status";
@@ -8,7 +14,10 @@ import bcrypt from "bcryptjs";
 import { userRoutes } from "./modules/users/users.route";
 import { authRoutes } from "./modules/auth/auth.route";
 import { serviceRoutes } from "./modules/services/services.route";
-import { bookingRoutes } from "./bookings/booking.route";
+import { bookingRoutes } from "./modules/bookings/booking.route";
+import { paymentRoutes } from "./modules/payments/payment.route";
+import { stripe } from "./lib/stripe";
+import { paymentController } from "./modules/payments/payment.controller";
 
 const app: Application = express();
 app.use(
@@ -16,6 +25,12 @@ app.use(
     origin: config.app_url,
     credentials: true,
   }),
+);
+
+app.post(
+  "/api/payment/webhook",
+  express.raw({ type: "application/json" }),
+  paymentController.handleWebhook,
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -29,5 +44,6 @@ app.use("/api/users/", userRoutes);
 app.use("/api/auth/", authRoutes);
 app.use("/api/", serviceRoutes);
 app.use("/api/", bookingRoutes);
+app.use("/api/payment/", paymentRoutes);
 
 export default app;

@@ -2,7 +2,7 @@ model Service {
   id          String   @id @default(uuid())
   name        String
   description String?
-  price       Float?
+  price       Float    @default(0) 
   location    String?
   rating      Int?
 //   categoryId  String

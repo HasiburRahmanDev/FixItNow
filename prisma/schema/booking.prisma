@@ -1,6 +1,7 @@
 model Booking {
   id        String        @id @default(uuid())
-  bookingAt DateTime
+  name String
+  bookingAt DateTime?
   address   String
   status    BookingStatus @default(PENDING)
 
@@ -12,4 +13,5 @@ model Booking {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  payment Payment?
 }

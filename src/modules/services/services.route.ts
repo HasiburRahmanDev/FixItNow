@@ -7,7 +7,7 @@ const router = Router();
 
 router.post(
   "/services",
-  auth(Role.ADMIN, Role.TECHNICIAN),
+  auth(Role.ADMIN, Role.TECHNICIAN, Role.CUSTOMER),
   serviceController.createServices,
 );
 
