@@ -2,6 +2,7 @@ import cookieParser from "cookie-parser";
 import express, {
   application,
   Application,
+  NextFunction,
   Request,
   response,
   Response,
@@ -18,6 +19,9 @@ import { bookingRoutes } from "./modules/bookings/booking.route";
 import { paymentRoutes } from "./modules/payments/payment.route";
 import { stripe } from "./lib/stripe";
 import { paymentController } from "./modules/payments/payment.controller";
+import path from "node:path";
+import { notFound } from "./middlewares/notFound";
+import { globalErrorHandler } from "./middlewares/globalError";
 
 const app: Application = express();
 app.use(
@@ -45,5 +49,9 @@ app.use("/api/auth/", authRoutes);
 app.use("/api/", serviceRoutes);
 app.use("/api/", bookingRoutes);
 app.use("/api/payment/", paymentRoutes);
+
+app.use(notFound);
+
+app.use(globalErrorHandler);
 
 export default app;
