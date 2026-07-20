@@ -40,7 +40,7 @@ const getBookingById = catchAsync(async (req, res) => {
     statusCode: 200,
     success: true,
     message: "Booking retrieved successfully",
-    data: result,
+    data: { result },
   });
 });
 

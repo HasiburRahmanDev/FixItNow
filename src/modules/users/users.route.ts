@@ -1,8 +1,4 @@
 import { Request, Response, Router } from "express";
-import { prisma } from "../../lib/prisma";
-import bcrypt from "bcryptjs";
-import config from "../../../config";
-import httpStatus from "http-status";
 import { userController } from "./users.controller";
 import { auth } from "../../middlewares/auth";
 import { Role } from "../../../generated/prisma/enums";
